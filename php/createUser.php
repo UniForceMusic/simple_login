@@ -9,6 +9,18 @@
     $username = $_POST["username"];
     $password = $_POST["password"];
 
+    // This function checks if the user is already present in the database
+    function checkIfUserAlreadyExist($connection, $username) {
+        $sql = "SELECT COUNT(username) FROM users WHERE username='$username';";
+        $result = mysqli_query($connection, $sql);
+        $resultArray = mysqli_fetch_assoc($result);
+        if ($resultArray['COUNT(username)'] == 0) {
+            return False;
+        } else {
+            return True;
+        }
+    }
+
     // This function inserts the new username and password in the database
     function insertUserInDb($connection, $username, $password) {
         $sql = "INSERT INTO users(username, password) VALUES('$username', '$password');";
@@ -22,25 +34,31 @@
     // - atleast one number
     // - Atleast one special character
 
-    // Check for capital letter
-    if (preg_match('/[A-Z]/', $password)) {
-        // Check for number
-        if (preg_match('/[0-9]/', $password)) {
-            // Check for special character
-            if (preg_match('/[!\'^£$%&*()}{@#~?><>,|=_+¬-]/', $password)) {
-                $responseMsg = "User: " . $username . " succesfully created";
+    // Check if username is available
+    if (!checkIfUserAlreadyExist($connection, $username)) {
+        // Check for capital letter
+        if (preg_match('/[A-Z]/', $password)) {
+            // Check for number
+            if (preg_match('/[0-9]/', $password)) {
+                // Check for special character
+                if (preg_match('/[!\'^£$%&*()}{@#~?><>,|=_+¬-]/', $password)) {
+                    $responseMsg = "User: " . $username . " succesfully created";
 
-                // This calls the function that inserts the new user in the database
-                insertUserInDb($connection, $username, $password); 
+                    // This calls the function that inserts the new user in the database
+                    insertUserInDb($connection, $username, $password); 
+                } else {
+                    $responseMsg = "Must atleast contain one special character";
+                }
             } else {
-                $responseMsg = "Must atleast contain one special character";
+                $responseMsg = "Must atleast contain one numeric character";
             }
         } else {
-            $responseMsg = "Must atleast contain one numeric character";
+        $responseMsg = "Must atleast contain one capital letter";
         }
     } else {
-        $responseMsg = "Must atleast contain one capital letter";
+        $responseMsg = "Username is already taken";
     }
+    
 
     // This lets the user know the operation completed succesfully
     echo "<div class=\"databaseresponse\">" . $responseMsg . "</div>";
