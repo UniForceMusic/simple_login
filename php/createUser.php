@@ -53,7 +53,7 @@
                 $responseMsg = "Must atleast contain one numeric character";
             }
         } else {
-        $responseMsg = "Must atleast contain one capital letter";
+            $responseMsg = "Must atleast contain one capital letter";
         }
     } else {
         $responseMsg = "Username is already taken";
