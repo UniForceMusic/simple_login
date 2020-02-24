@@ -14,7 +14,6 @@ This project is a page where you can create new users and log in
 - The reponse is displayed in the div "databaseresponse"
 
 # TODO
-- Add a check for duplicate usernames
 - Automaticly hash the password when saving to the database
 - Add cookies
 - Add sessions
