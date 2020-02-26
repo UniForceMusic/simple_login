@@ -9,13 +9,9 @@ This project is a page where you can create new users and log in
 - Go to localhost
 
 # How it works
-- The credentials you fill in "username" and "password" get sent to a PHP script
-- Based on the input the PHP script sends a reponse
-- The reponse is displayed in the div "databaseresponse"
+- In every php file in the folder 'php' you can find an explenation how the script works in the files
 
 # TODO
 - Automaticly hash the password when saving to the database
-- Add cookies
-- Add sessions
 - Add a config file where you can specify the password requirements
 
