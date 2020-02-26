@@ -1,4 +1,13 @@
 <?php
+    // HOW IT WORKS:
+    // - The script gets the username and password via POST
+    // - The user checks if a user exists in the database
+    // - If the user exist the script will end and the user will be informed
+    // - If the user doesn't exist the password given will be checked if it contains a capital letter, a numeric vallue and a special character
+    // - If the password meets all the requirements the function insertUserInDb is called which creates a new user with the username and password that were given
+    // - The variable respondeMsg is responsible for containing the message that will be sent back to the webpage
+    // - I send back a div so it's easier to style with css
+
     // Disable error loggin
     error_reporting(0);
     

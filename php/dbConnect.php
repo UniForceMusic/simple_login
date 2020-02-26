@@ -1,4 +1,6 @@
 <?php
+    // This file contains the variables that are used to connect to the database
+
     // Login variables
     $dbServer = "localhost";
     $dbUsername = "root";
