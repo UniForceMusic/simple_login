@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Gegenereerd op: 24 feb 2020 om 00:53
+-- Gegenereerd op: 26 feb 2020 om 23:27
 -- Serverversie: 10.4.11-MariaDB
--- PHP-versie: 7.4.1
+-- PHP-versie: 7.4.2
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -31,15 +31,17 @@ SET time_zone = "+00:00";
 CREATE TABLE `users` (
   `user_id` int(11) NOT NULL,
   `username` text NOT NULL,
-  `password` text NOT NULL
+  `password` text NOT NULL,
+  `active_session_id` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Gegevens worden geëxporteerd voor tabel `users`
 --
 
-INSERT INTO `users` (`user_id`, `username`, `password`) VALUES
-(15, 'admin', 'password');
+INSERT INTO `users` (`user_id`, `username`, `password`, `active_session_id`) VALUES
+(15, 'admin', 'password', 'NULL'),
+(16, 'admin2', 'Password123$', 'NULL');
 
 --
 -- Indexen voor geëxporteerde tabellen
@@ -59,7 +61,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT voor een tabel `users`
 --
 ALTER TABLE `users`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
