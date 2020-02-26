@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Gegenereerd op: 26 feb 2020 om 23:27
+-- Gegenereerd op: 26 feb 2020 om 23:30
 -- Serverversie: 10.4.11-MariaDB
 -- PHP-versie: 7.4.2
 
@@ -41,7 +41,7 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`user_id`, `username`, `password`, `active_session_id`) VALUES
 (15, 'admin', 'password', 'NULL'),
-(16, 'admin2', 'Password123$', 'NULL');
+(16, 'admin2', 'password2', 'NULL');
 
 --
 -- Indexen voor geëxporteerde tabellen
