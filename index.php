@@ -1,3 +1,22 @@
+<?php
+    // HOW IT WORKS:
+    // - A session is started
+    // - The page calls a script that checks if the session id is present in the database
+    // - If the session id is present the user is allowed to enter the site
+    // - If the session id is not present the user is redirected to the login page
+
+    // Include the file that contains the script
+    include_once 'php/checkSessionID.php';
+
+    // Start a session
+    session_start();
+
+    // If the session id is not present direct the user to the login page
+    if (!checkIfSessionIDisPresent(session_id())) {
+        header("Location: login.php");
+    }
+?>
+
 <!DOCTYPE html>
 <meta charset="UTF-8">
 <link rel="stylesheet" href="stylesheet.css">
@@ -7,45 +26,32 @@
         <title>Log in page</title>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
         <script>
-            // This function checks if the login credentials are correct
-            function checkLoginCredentials() {
-                // Variables that get send to the php script
-                var username = $('#username').val();
-                var password = $('#password').val();
-
-                // Send username and password to the php script that compares them to the database
-                $.post('php/checkLoginCredentials.php', {username:username, password:password}, function(response){
-                    // Write the response message in the container
-                    $('.databaseresponse').replaceWith(response);
+            // Function that gets the username to display
+            function getUsername() {
+                $.post('php/getUsername.php', {}, function(username){
+                    // Write the response message in the value
+                    document.getElementById("displayname").innerHTML = username;
                 });
             }
 
-            // This function sends the username and password to a php script that will create the new user
-            function createNewUser() {
-                // Variables that get send to the php script
-                var username = $('#username').val();
-                var password = $('#password').val();
-
-                $.post('php/createUser.php',{username:username, password:password}, function(response){
-                    $('.databaseresponse').replaceWith(response);
+            // Function that logs the user out
+            function logOut() {
+                $.post('php/logOut.php', {}, function(response){
+                    window.location.href = "login.php";
                 });
             }
         </script>
     </head>
 
     <body>
-        <div class="inlogcontainer">
-            <!-- USERNAME AND PASSWORD INPUT BOXES -->
-            <form method="php/checkLoginCredentials.php" action="post">
-                <td>Username: <input type="textbox" class="textbox" id="username" name="username" size="16" autocomplete="off" autofocus="autofocus"></td><br>
-                <td>Password: <input type="textbox" class="textbox" id="password" name="password" size="16" autocomplete="off"></td><br>
-            </form>
-
-            <button onclick="checkLoginCredentials()">Log in</button>
-            <button onclick="createNewUser()">Create new user</button>
-            
-            <!-- DIV THAT CONTAINS THE MESSAGE THE PHP SCRIPT SENDS BACK -->
-            <div class="databaseresponse"></div>
+        <div class="welcome message">
+            <td><p id="displayname">NULL</p><td>
         </div>
+
+        <button onclick="logOut()">Log out</button>
     </body>
+
+    <script>
+        window.onload = getUsername();
+    </script>
 </html>
