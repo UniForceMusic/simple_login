@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Gegenereerd op: 26 feb 2020 om 23:30
+-- Gegenereerd op: 27 feb 2020 om 17:57
 -- Serverversie: 10.4.11-MariaDB
 -- PHP-versie: 7.4.2
 
@@ -40,8 +40,8 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`user_id`, `username`, `password`, `active_session_id`) VALUES
-(15, 'admin', 'password', 'NULL'),
-(16, 'admin2', 'password2', 'NULL');
+(15, 'admin', '5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8', 'NULL'),
+(16, 'admin2', '6cf615d5bcaac778352a8f1f3360d23f02f34ec182e259897fd6ce485d7870d4', 'NULL');
 
 --
 -- Indexen voor geëxporteerde tabellen
@@ -61,7 +61,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT voor een tabel `users`
 --
 ALTER TABLE `users`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
