@@ -1,8 +1,9 @@
 <?php
     // HOW IT WORKS:
     // - The script gets the username and password via POST
-    // - The script gets the password that belongs to the given username from the database
-    // - It compares the passwords
+    // - The script hashes the password that was given via POST
+    // - The script gets the hashed password that belongs to the given username from the database
+    // - It compares the hashed passwords
     // - If the passwords match a redirect is injected in in the page
     // - If the password doesn't match the user is notified
     // - The variable respondeMsg is responsible for containing the message that will be sent back to the webpage
@@ -17,6 +18,12 @@
     // This gets the username and password from the page the php script was called from
     $username = $_POST["username"];
     $password = $_POST["password"];
+
+    // This function encrypts the data in 'stringToEncrypt' to sha256
+    function encryptSHA256($stringToEncrypt) {
+        $sha256 = hash(sha256, $stringToEncrypt);
+        return $sha256;
+    }
 
     // This function gets the password from the specified user from the database
     function getPasswordFromUser($connection, $username) {
@@ -55,7 +62,7 @@
     }
 
     // Message that will be sent back to the webpage in a div
-    $responseMsg = comparePassword($connection, $username, $password, getPasswordFromUser($connection, $username));
+    $responseMsg = comparePassword($connection, $username, encryptSHA256($password), getPasswordFromUser($connection, $username));
 
     // This variable is the response code that gets sent back to the webpage
     $responeDiv = "<div class=\"databaseresponse\">" . $responseMsg . "</div>";

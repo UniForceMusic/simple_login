@@ -1,6 +1,9 @@
 <?php
     // This file contains the variables that are used to connect to the database
 
+    // Disable error loggin
+    error_reporting(0);
+
     // Login variables
     $dbServer = "localhost";
     $dbUsername = "root";

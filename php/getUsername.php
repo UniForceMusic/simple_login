@@ -4,6 +4,9 @@
     // - The username with the same session id is retrieved from the database
     // - The script sends the username back
 
+    // Disable error loggin
+    error_reporting(0);
+
     // This gets the variable for the connection to the database
     include_once 'dbConnect.php';
 

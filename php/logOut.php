@@ -3,6 +3,9 @@
     // - The session id is sent to the database
     // - All the user id's that match are cleared from the database
 
+    // Disable error loggin
+    error_reporting(0);
+
     // This gets the variable for the connection to the database
     include_once 'dbConnect.php';
 

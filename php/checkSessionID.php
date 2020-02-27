@@ -5,6 +5,9 @@
     // - It checks if the current session id is present anywhere in the database
     // - If it's present in the database the page is allowed to be displayed
     
+    // Disable error loggin
+    error_reporting(0);
+
     function checkIfSessionIDisPresent($session_id) {
         // This gets the variable for the connection to the database
         include_once 'dbConnect.php';

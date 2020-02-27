@@ -5,6 +5,7 @@
     // - If the user exist the script will end and the user will be informed
     // - If the user doesn't exist the password given will be checked if it contains a capital letter, a numeric vallue and a special character
     // - If the password meets all the requirements the function insertUserInDb is called which creates a new user with the username and password that were given
+    // - The password is hashed with sha256 and stored in the database
     // - The variable respondeMsg is responsible for containing the message that will be sent back to the webpage
     // - I send back a div so it's easier to style with css
 
@@ -17,6 +18,12 @@
     // This gets the username and password from the page the php script was called from
     $username = $_POST["username"];
     $password = $_POST["password"];
+
+    // This function encrypts the data in 'stringToEncrypt' to sha256
+    function encryptSHA256($stringToEncrypt) {
+        $sha256 = hash(sha256, $stringToEncrypt);
+        return $sha256;
+    }
 
     // This function checks if the user is already present in the database
     function checkIfUserAlreadyExist($connection, $username) {
@@ -54,7 +61,7 @@
                     $responseMsg = "User: " . $username . " succesfully created";
 
                     // This calls the function that inserts the new user in the database
-                    insertUserInDb($connection, $username, $password); 
+                    insertUserInDb($connection, $username, encryptSHA256($password)); 
                 } else {
                     $responseMsg = "Must atleast contain one special character";
                 }
