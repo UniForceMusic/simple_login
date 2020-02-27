@@ -8,7 +8,7 @@ This project is a page where you can create new users and log in
 - Import the database with the sql file via phpmyadmin
 - Go to localhost
 
-# default logins
+# Default Logins
 - admin / password
 - admin2 / password2
 
