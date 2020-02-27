@@ -12,7 +12,7 @@ This project is a page where you can create new users and log in
 - admin / password
 - admin2 / password2
 
-# How it works
+# How It Works
 - In every php file in the folder 'php' you can find an explenation how the script works in the files
 
 # TODO
